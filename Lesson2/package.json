@@ -1,0 +1,11 @@
+{
+  "name": "comp229-m2022-lesson2",
+  "version": "0.0.1",
+  "description": "Demo Project for COMP229 in the Summer 2022 semester for Lesson 2",
+  "main": "server.js",
+  "author": "Tom Tsiliopoulos",
+  "license": "MIT",
+  "dependencies": {
+    "mime-types": "^2.1.35"
+  }
+}
