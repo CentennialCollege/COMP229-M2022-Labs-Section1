@@ -9,6 +9,11 @@
   "scripts": {
     "start": "node server.js"
   },
+  "engines": {
+    "node": "18.1.0",
+    "npm": "8.1.0",
+    "yarn": "1.22.18"
+  },
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "debug": "^4.3.4",
