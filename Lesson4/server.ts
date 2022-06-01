@@ -1,10 +1,6 @@
 #!/usr/bin/env node
 
-/**
- * Module dependencies.
- */
-
-import app from './app';
+import app from './Server/Config/app';
 import debug from 'debug';
 debug('lesson3:server');
 import http from 'http';
