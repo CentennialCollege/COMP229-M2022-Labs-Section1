@@ -13,18 +13,17 @@
 <body>
     <!-- Main Navigation Section --> 
     <header>
-
+        <%- include('./components/header.ejs'); %>
     </header>
 
     <!-- Content Section -->
     <main>
-        <h1>Hello, World!</h1>
+        <%- include('./content/' + page + '.ejs'); %>
     </main>
-    
 
     <!-- Site-wide Footer Section -->
     <footer>
-
+        <%- include('./components/footer.ejs'); %>
     </footer>
     
     <!-- JavaScript Section -->
