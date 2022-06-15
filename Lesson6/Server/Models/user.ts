@@ -1,5 +1,5 @@
 // Step 1 - import mongoose - database adapter
-import mongoose, { PassportLocalSchema } from 'mongoose';
+import mongoose, { PassportLocalModel, PassportLocalSchema } from 'mongoose';
 const Schema = mongoose.Schema; // alias for mongoose.Schema
 import passportLocalMongoose from 'passport-local-mongoose';
 

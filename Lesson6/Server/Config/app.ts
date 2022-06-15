@@ -20,7 +20,7 @@ import cors from 'cors'; // Cross-Origin Resource Sharing
 let localStrategy = passportLocal.Strategy; // alias
 
 // Step 3 for auth - import the User Model
-
+import User from '../Models/user';
 
 // import router data from the router module(s)
 import indexRouter from '../Routes/index'; 
@@ -56,6 +56,29 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../Client')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
+
+app.use(cors()); // adds CORS middleware
+
+// Step 4 for auth - setup express session
+app.use(session({
+  secret: DBConfig.Secret,
+  saveUninitialized: false,
+  resave: false
+}));
+
+// Step 5 for auth - setup Connect Flash
+app.use(flash());
+
+// Step 6 for auth - initialize passport and session
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Step 7 for auth - implement the auth strategy
+passport.use(User.createStrategy());
+
+// Step 8 for auth - setup User serialization and deserialization (encoding / decoding)
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // add routing 
 app.use('/', indexRouter);
