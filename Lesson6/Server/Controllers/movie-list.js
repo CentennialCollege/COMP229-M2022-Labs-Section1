@@ -11,7 +11,7 @@ function DisplayMovieListPage(req, res, next) {
             console.error(err.message);
             res.end(err);
         }
-        res.render('index', { title: 'Movie List', page: 'movie-list', movies: moviesCollection });
+        res.render('index', { title: 'Movie List', page: 'movie-list', movies: moviesCollection, displayName: '' });
     });
 }
 exports.DisplayMovieListPage = DisplayMovieListPage;
