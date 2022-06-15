@@ -24,6 +24,16 @@ const UserSchema = new Schema
     collection: "users"
 });
 
+declare global
+{
+    export type UserDocument = mongoose.Document &
+    {
+        username: String,
+        EmailAddress: String,
+        DisplayName: String
+    }
+}
+
 // Step 3 - plugin the passport local strategy
 UserSchema.plugin(passportLocalMongoose);
 
