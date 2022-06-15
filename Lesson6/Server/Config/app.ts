@@ -4,22 +4,38 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
-// Step 1 - import the database connector / adapter package
+// import the database connector / adapter package
 import mongoose from 'mongoose';
+
+// Step 1 for auth - import modules
+import session from 'express-session';
+import passport from 'passport';
+import passportLocal from 'passport-local';
+import flash from 'connect-flash';
+
+// modules for JWT support
+import cors from 'cors'; // Cross-Origin Resource Sharing
+
+// Step 2 for auth - define our auth objects
+let localStrategy = passportLocal.Strategy; // alias
+
+// Step 3 for auth - import the User Model
+
 
 // import router data from the router module(s)
 import indexRouter from '../Routes/index'; 
 import movieListRouter from '../Routes/movie-list';
+import authRouter from '../Routes/auth';
 
 // create the application object - which is of type express
 const app = express();
 
-// Step 2 - Complete the DB Connection Configuration
+// Complete the DB Connection Configuration
 import * as DBConfig from './db';
 mongoose.connect(DBConfig.LocalURI);
 const db = mongoose.connection; // alias for the mongoose connection
 
-// Step 3 - Listen for Connections or Errors
+// Listen for Connections or Errors
 db.on("open", function()
 {
   console.log(`Connected to MongoDB at: ${DBConfig.HostName}`);
@@ -44,6 +60,7 @@ app.use(express.static(path.join(__dirname, '../../node_modules')));
 // add routing 
 app.use('/', indexRouter);
 app.use('/', movieListRouter);
+app.use('/', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) 
