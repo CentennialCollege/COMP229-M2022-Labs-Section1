@@ -14,7 +14,7 @@ export function UserDisplayName(req: express.Request): string
 // helper middleware function for guarding secure locations
 export function AuthGuard(req: express.Request, res: express.Response, next: express.NextFunction): void
 {
-    if(!req.isAuthenticated)
+    if(!req.isAuthenticated())
     {
         return res.redirect('/login');
     }
