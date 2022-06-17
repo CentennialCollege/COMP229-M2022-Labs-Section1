@@ -26,7 +26,20 @@ export function DisplayAddPage(req: express.Request, res: express.Response, next
 
 export function DisplayEditPage(req: express.Request, res: express.Response, next: express.NextFunction): void 
 {
+  let id = req.params.id;
 
+  // pass the id to the db and read the movie into the edit page
+  Movie.findById(id, {}, {}, function(err, movieToEdit)
+  {
+    if(err)
+    {
+      console.error(err);
+      res.end(err);
+    }
+
+    // show the edit view with the data
+    res.render('index', { title: 'Edit', page: 'edit', movie: movieToEdit, displayName:  UserDisplayName(req) })
+  });
 }
 
 export function ProcessAddPage(req: express.Request, res: express.Response, next: express.NextFunction): void 
