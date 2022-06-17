@@ -21,7 +21,7 @@ export function DisplayMovieListPage(req: express.Request, res: express.Response
 
 export function DisplayAddPage(req: express.Request, res: express.Response, next: express.NextFunction): void 
 {
-
+  res.render('index', { title: 'Add', page: 'edit', movie: '', displayName:  UserDisplayName(req) })
 }
 
 export function DisplayEditPage(req: express.Request, res: express.Response, next: express.NextFunction): void 
