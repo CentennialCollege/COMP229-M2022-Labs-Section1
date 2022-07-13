@@ -16,13 +16,14 @@ export function DisplayMovieListPage(req: express.Request, res: express.Response
         console.error(err.message);
         res.end(err);
       }
-      res.render('index', { title: 'Movie List', page: 'movie-list', movies: moviesCollection, displayName:  UserDisplayName(req)  });
+      
+      res.json({success: true, msg: 'Movie-List Displayed Successfully', movies: moviesCollection, user: req.user});
     });
 }
 
 export function DisplayAddPage(req: express.Request, res: express.Response, next: express.NextFunction): void 
 {
-  res.render('index', { title: 'Add', page: 'edit', movie: '', displayName:  UserDisplayName(req) })
+  res.json({success: true, msg: 'Add Page Displayed Successfully!'});
 }
 
 export function DisplayEditPage(req: express.Request, res: express.Response, next: express.NextFunction): void 
@@ -39,7 +40,7 @@ export function DisplayEditPage(req: express.Request, res: express.Response, nex
     }
 
     // show the edit view with the data
-    res.render('index', { title: 'Edit', page: 'edit', movie: movieToEdit, displayName:  UserDisplayName(req) })
+    res.json({success: true, msg: 'Edit Page Displayed Successfully!', movie: movieToEdit});
   });
 }
 
@@ -64,7 +65,7 @@ export function ProcessAddPage(req: express.Request, res: express.Response, next
     }
 
     // new movie has been added -> refresh the movie-list
-    res.redirect('/movie-list');
+    res.json({success: true, msg: 'Successfully Added Movie', movie: newMovie});
   })
 }
 
@@ -92,7 +93,7 @@ export function ProcessEditPage(req: express.Request, res: express.Response, nex
     }
 
     // edit was successful -> go to the movie-list page
-    res.redirect('/movie-list');
+    res.json({success: true, msg: 'Successfully Edited Movie', movie: updatedMovie});
   });
 }
 
@@ -110,6 +111,6 @@ export function ProcessDeletePage(req: express.Request, res: express.Response, n
     }
 
     // delete was successful
-    res.redirect('/movie-list');
+    res.json({success: true, msg: 'Successfully Deleted Movie!'});
   });
 }
