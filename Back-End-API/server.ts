@@ -2,11 +2,11 @@
 
 import app from './Server/Config/app';
 import debug from 'debug';
-debug('lesson3:server');
+debug('Back-End-API:server');
 import http from 'http';
 import { HttpError } from 'http-errors';
 
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '3500');
 app.set('port', port);
 
 const server = http.createServer(app);
