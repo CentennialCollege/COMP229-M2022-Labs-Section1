@@ -1,5 +1,9 @@
 import express from 'express';
 
+//enable - support JWT
+import jwt from 'jsonwebtoken';
+import * as DBConfig from '../Config/db';
+
 // convenience function to return the DisplayName of the User
 export function UserDisplayName(req: express.Request): string
 {
@@ -19,4 +23,23 @@ export function AuthGuard(req: express.Request, res: express.Response, next: exp
         return res.redirect('/login');
     }
     next();
+}
+
+// helper function to generate a JWT (JSON Web Token)
+export function GenerateToken(user: UserDocument): string
+{
+    const payload =
+    {
+        id: user._id,
+        DisplayName: user.DisplayName,
+        username: user.username,
+        EmailAddress: user.EmailAddress
+    }
+
+    const jwtOptions =
+    {
+        expiresIn: 604800 // 1 week
+    }
+
+    return jwt.sign(payload, DBConfig.Secret, jwtOptions);
 }

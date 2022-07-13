@@ -8,6 +8,9 @@ import User from '../Models/user';
 
 import { UserDisplayName } from '../Util';
 
+// need to import the JWT Helper function
+import { GenerateToken } from '../Util';
+
 /* Processing Functions */
 export function ProcessLoginPage(req: express.Request, res: express.Response, next: express.NextFunction) 
 {
@@ -23,8 +26,7 @@ export function ProcessLoginPage(req: express.Request, res: express.Response, ne
         // are there login errors?
         if(!user)
         {
-            req.flash('loginMessage', 'Authentication Error!');
-            return res.redirect('/login');
+            return res.json({success: false, msg: 'ERROR: Authentication Failed'});
         }
 
         // no problems - we have a good username and password combination
@@ -37,8 +39,17 @@ export function ProcessLoginPage(req: express.Request, res: express.Response, ne
                 res.end(err);
             }
 
-            return res.redirect('/movie-list');
+            const authToken = GenerateToken(user);
+
+            return res.json({success: true, msg: 'User Logged In Successfully', user:
+            {
+            id: user._id,
+            DisplayName: user.DisplayName,
+            username: user.username,
+            EmailAddress: user.EmailAddress}, token: authToken})
         });
+
+        return;
     })(req, res, next);
 }
 
@@ -60,23 +71,16 @@ export function ProcessRegisterPage(req: express.Request, res: express.Response,
             if(err.name == "UserExistsError")
             {
                 console.error('ERROR: User Already Exists!');
-                req.flash('registerMessage', 'Registration Error!');
             }
             else
             {
                 console.error(err.name); // other error
-                req.flash('registerMessage', 'Server Error');
             }
-            return res.redirect('/register');
+            return res.json({success: false, msg: "ERROR: Registration Failed!"});
         }
 
         // if everything is ok - user has been registered
-
-        // automatically login the user
-        return passport.authenticate('local')(req, res, function()
-        {
-            return res.redirect('/movie-list');
-        });
+        return res.json({success: true, msg: "User Registered Successfully!"});
     });
 }
 
@@ -93,5 +97,5 @@ export function ProcessLogoutPage(req: express.Request, res: express.Response, n
         console.log('User Logged Out');
     });
 
-    res.redirect('/login');
+   res.json({success: true, msg: "User Logged Out Successfully!"});
 }
