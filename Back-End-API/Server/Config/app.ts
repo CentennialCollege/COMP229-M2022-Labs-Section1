@@ -23,7 +23,6 @@ let localStrategy = passportLocal.Strategy; // alias
 import User from '../Models/user';
 
 // import router data from the router module(s)
-import indexRouter from '../Routes/index'; 
 import movieListRouter from '../Routes/movie-list';
 import authRouter from '../Routes/auth';
 
@@ -81,9 +80,8 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // add routing 
-app.use('/', indexRouter);
-app.use('/', movieListRouter);
-app.use('/', authRouter);
+app.use('/api', movieListRouter);
+app.use('/api', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) 
