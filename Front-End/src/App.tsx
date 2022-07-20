@@ -7,6 +7,7 @@ import Footer from './components/footer';
 
 // Content Components
 import Home from './content/home';
+import About from './content/about';
 
 // Authentication Components
 
@@ -28,6 +29,7 @@ function App()
         <Routes>
           <Route path="/" element={ <Home />}  />
           <Route path="/home" element={ <Home />}  />
+          <Route path="/about" element={ <About />}  />
         </Routes>
 
         {/* Footer will go here */}
