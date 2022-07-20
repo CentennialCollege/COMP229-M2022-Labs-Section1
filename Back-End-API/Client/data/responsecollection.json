@@ -1,0 +1,19 @@
+{
+    "Responses": 
+    [
+        {
+            "SurveyID": "1",
+            "OwnerID": "1",
+            "QuestionID": "1",
+            "OptionID": "1",
+            "OptionValue": 0
+        },
+        {
+            "SurveyID": "1",
+            "OwnerID": "1",
+            "QuestionID": "2",
+            "OptionID": "2",
+            "OptionValue": 1
+        }
+    ]
+}
