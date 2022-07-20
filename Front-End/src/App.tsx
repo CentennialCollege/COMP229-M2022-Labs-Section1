@@ -6,6 +6,7 @@ import Header from './components/header';
 import Footer from './components/footer';
 
 // Content Components
+import Home from './content/home';
 
 // Authentication Components
 
@@ -16,7 +17,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './App.css';
 
-
 function App() 
 {
   return (
@@ -26,7 +26,8 @@ function App()
 
         {/* Client-Side Routing and content will go here */}
         <Routes>
-          <Route path="/"/>
+          <Route path="/" element={ <Home />}  />
+          <Route path="/home" element={ <Home />}  />
         </Routes>
 
         {/* Footer will go here */}
