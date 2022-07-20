@@ -23,7 +23,9 @@ function App()
         <Header></Header>
 
         {/* Client-Side Routing and content will go here */}
-        <h1>Hello World</h1>
+        <Routes>
+          <Route path="/"/>
+        </Routes>
 
         {/* Footer will go here */}
 
