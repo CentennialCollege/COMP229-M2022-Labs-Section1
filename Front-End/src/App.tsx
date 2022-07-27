@@ -15,6 +15,7 @@ import PageNotFound from './content/PageNotFound';
 
 // Authentication Components
 import Login from './authentication/login';
+import Logout from './authentication/logout';
 
 // Movie-List Components
 
@@ -22,6 +23,7 @@ import Login from './authentication/login';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './App.css';
+
 
 
 
@@ -41,6 +43,7 @@ function App()
           <Route path="/services" element={ <Services />}  />
           <Route path="/contact" element={ <Contact />}  />
           <Route path="/login" element={ <Login />}  />
+          <Route path="/logout" element={ <Logout />}  />
           <Route path="*" element={ <PageNotFound />}  />
         </Routes>
 
