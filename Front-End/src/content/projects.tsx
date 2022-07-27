@@ -4,7 +4,7 @@ function Projects()
 {
     useEffect(()=>{
         document.title = "Our Projects";
-    });
+    }, []);
 
     return (
         <div className="container">

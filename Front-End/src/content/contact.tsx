@@ -4,7 +4,7 @@ function Contact()
 {
     useEffect(()=>{
         document.title = "Contact Us";
-    });
+    }, []);
 
     return (
         <div className="container">

@@ -4,7 +4,7 @@ function PageNotFound()
 {
     useEffect(()=>{
         document.title = "ERROR: 404";
-    });
+    }, []);
 
     return (
         <div className="container">

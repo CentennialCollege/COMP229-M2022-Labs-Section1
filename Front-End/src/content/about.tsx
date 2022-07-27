@@ -4,7 +4,7 @@ function About()
 {
     useEffect(()=>{
         document.title = "About Us";
-    });
+    }, []);
 
     return (
         <div className="container">

@@ -4,7 +4,7 @@ function Services()
 {
     useEffect(()=>{
         document.title = "Our Services";
-    });
+    }, []);
 
     return (
         <div className="container">

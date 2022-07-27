@@ -5,7 +5,7 @@ function Home()
 {
     useEffect(()=>{
         document.title = "Home";
-    });
+    }, []);
 
     return(
         <div className="container">
