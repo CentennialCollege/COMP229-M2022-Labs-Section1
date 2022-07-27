@@ -38,11 +38,21 @@ function Login()
 
         // use the auth service to perform login
         AuthService.login(UserData.username, UserData.password)
-        .then(() => {
-            // navigate to the movie-list page
-            // TODO: Change this link to "movie-list";
-            navigate("/home"); // temporary link to the home page for testing
-            window.location.reload();
+        .then((data) => {
+
+            if(data.success)
+            {
+                // navigate to the movie-list page
+                // TODO: Change this link to "movie-list";
+                navigate("/home"); // temporary link to the home page for testing
+                window.location.reload();
+            }
+            else
+            {
+                // TODO: Need to replace the Connect-Flash Messaging
+                window.location.reload();
+            }
+            
         }, error =>{
             // TODO: Need to replace the Connect-Flash Messaging
             window.location.reload();
