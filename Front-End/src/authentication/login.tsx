@@ -57,7 +57,7 @@ function Login()
             {
                 // navigate to the movie-list page
                 // TODO: Change this link to "movie-list";
-                navigate("/home"); // temporary link to the home page for testing
+                navigate("/movie-list"); // temporary link to the home page for testing
                 window.location.reload();
             }
             else

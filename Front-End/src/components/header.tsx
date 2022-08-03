@@ -30,6 +30,18 @@ function Header()
     }
   }
 
+  function toggleMovieList()
+  {
+    if(isLoggedIn)
+    {
+      return(
+          <li className="nav-item">
+              <NavLink to={"/movie-list"} className="nav-link" aria-current="page"><i className="fa-solid fa-table-list fa-lg"></i> Movie List</NavLink>
+            </li>
+      );
+    }
+  }
+
     return(
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
@@ -60,6 +72,8 @@ function Header()
                 <NavLink to={"/contact"} className="nav-link" aria-current="page"><i className="fa-solid fa-envelopes-bulk fa-lg"></i> Contact Us</NavLink>
               </li>
 
+              { toggleMovieList() }
+              
               { toggleLogin() }
 
             </ul>
