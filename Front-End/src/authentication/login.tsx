@@ -7,6 +7,7 @@ function Login()
 {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
     const navigate = useNavigate(); // alias - convenience
 
     useEffect(()=>{
@@ -21,6 +22,18 @@ function Login()
     function onChangePassword(event: ChangeEvent<HTMLInputElement>)
     {
         setPassword(event.target.value);
+    }
+
+    function handleMessage()
+    {
+        if(message.length > 0)
+        {
+            return(
+            <div id="messageArea" className="alert alert-danger">
+                {message}
+              </div>
+            );
+        }
     }
 
     function handleLogin(event: any)
@@ -49,14 +62,27 @@ function Login()
             }
             else
             {
-                // TODO: Need to replace the Connect-Flash Messaging
-                window.location.reload();
+                setMessage(data.message);
+                clearForm(null);
             }
             
         }, error =>{
-            // TODO: Need to replace the Connect-Flash Messaging
-            window.location.reload();
+            setMessage("Server Error!");
+            //window.location.reload();
         });
+    }
+
+    function clearForm(event: any)
+    {
+        setUsername("");
+        setPassword("");
+    }
+
+    function handleReset(event: any)
+    {
+        clearForm(event);
+        setMessage("");
+        console.log("Form Reset!");
     }
 
     return(
@@ -66,9 +92,9 @@ function Login()
                 <div className="login" id="contentArea">
                     <h1 className="display-4">Login</h1>
         
-                    {/* TODO: Need a Message Area */}
+                    { handleMessage() }
 
-                    <form onSubmit= { handleLogin } id="loginForm" noValidate>
+                    <form onSubmit= { handleLogin } onReset= {handleReset} id="loginForm" noValidate>
                         <div className="form-group mb-2">
                         <div className="input-group">
                             <span className="input-group-addon">
