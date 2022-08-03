@@ -19,11 +19,13 @@ import Logout from './authentication/logout';
 import Register from './authentication/register';
 
 // Movie-List Components
+import MovieList from './movie-list/movie-list';
 
 // Styles and Fonts
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './App.css';
+
 
 function App() 
 {
@@ -40,6 +42,9 @@ function App()
           <Route path="/projects" element={ <Projects />}  />
           <Route path="/services" element={ <Services />}  />
           <Route path="/contact" element={ <Contact />}  />
+
+          <Route path="/movie-list" element={ <MovieList />}  />
+
           <Route path="/login" element={ <Login />}  />
           <Route path="/register" element={ <Register />}  />
           <Route path="/logout" element={ <Logout />}  />
