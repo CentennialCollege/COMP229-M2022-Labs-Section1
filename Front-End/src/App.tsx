@@ -21,11 +21,13 @@ import AuthGuard from './authentication/authguard';
 
 // Movie-List Components
 import MovieList from './movie-list/movie-list';
+import AddMovie from './movie-list/add';
 
 // Styles and Fonts
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './App.css';
+
 
 
 
@@ -46,6 +48,7 @@ function App()
           <Route path="/contact" element={ <Contact />}  />
 
           <Route path="/movie-list" element={ <AuthGuard><MovieList /></AuthGuard> } />
+          <Route path="/add" element={ <AuthGuard><AddMovie /></AuthGuard> } />
 
           <Route path="/login" element={ <Login />}  />
           <Route path="/register" element={ <Register />}  />
