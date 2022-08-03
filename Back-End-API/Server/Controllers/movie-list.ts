@@ -49,10 +49,10 @@ export function ProcessAddPage(req: express.Request, res: express.Response, next
   // instantiate a new Movie to Add
   let newMovie = new Movie
   ({
-    "Name": req.body.movieName,
-    "Director": req.body.movieDirector,
-    "Year": req.body.movieYear,
-    "Rating": req.body.movieRating
+    "Name": req.body.Name,
+    "Director": req.body.Director,
+    "Year": req.body.Year,
+    "Rating": req.body.Rating
   });
 
   // Insert the new Movie object into the database (movies collection)
@@ -77,10 +77,10 @@ export function ProcessEditPage(req: express.Request, res: express.Response, nex
   let updatedMovie = new Movie
   ({
     "_id": id,
-    "Name": req.body.movieName,
-    "Director": req.body.movieDirector,
-    "Year": req.body.movieYear,
-    "Rating": req.body.movieRating
+    "Name": req.body.Name,
+    "Director": req.body.Director,
+    "Year": req.body.Year,
+    "Rating": req.body.Rating
   });
 
   // update the movie in the database
