@@ -12,6 +12,11 @@ function MovieList()
         getMovieList();
     }, []);
 
+    function refreshList()
+    {
+        getMovieList();
+    }
+
     function getMovieList()
     {
         MovieListDataService.readAll()
@@ -24,19 +29,26 @@ function MovieList()
         });
     }
 
-    function deleteContact(id: string)
+    function deleteMovie(id: string)
     {
-        // Call the MovieList Service and Delete the Movie
+        MovieListDataService.delete(id)
+        .then((response: any) =>{
+            refreshList();
+        })
+        .catch((e: Error) =>
+        {
+            console.log(e);
+        });
     }
 
     function confirmDelete(id: string)
     {
         if(!window.confirm("Are You Sure?"))
         {
-            // refresh the movie list
+            refreshList();
             return;
         }
-        deleteContact(id);
+        deleteMovie(id);
     }
 
     return(
