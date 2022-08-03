@@ -12,6 +12,7 @@ function Register()
     const [FirstName, setFirstName] = useState('');
     const [LastName, setLastName] = useState('');
     const [EmailAddress, setEmailAddress] = useState('');
+    const [message, setMessage] = useState('');
     const navigate = useNavigate(); // alias - convenience
 
     useEffect(()=>{
@@ -48,6 +49,35 @@ function Register()
         setEmailAddress(event.target.value);
     }
 
+    function handleMessage()
+    {
+        if(message.length > 0)
+        {
+            return(
+            <div id="messageArea" className="alert alert-danger">
+                {message}
+              </div>
+            );
+        }
+    }
+
+    function clearForm(event: any)
+    {
+        setUsername("");
+        setPassword("");
+        setConfirmPassword("");
+        setFirstName("");
+        setLastName("");
+        setEmailAddress("");
+    }
+
+    function handleReset(event: any)
+    {
+        clearForm(event);
+        setMessage("");
+        console.log("Form Reset!");
+    }
+
     function handleRegister(event: any)
     {
         event.preventDefault();
@@ -62,12 +92,21 @@ function Register()
         }
 
         AuthService.register(UserData.username, UserData.password, UserData.FirstName, UserData.LastName, UserData.EmailAddress)
-        .then(() => {
-            navigate('/login');
-            window.location.reload();
+        .then((data) => {
+
+            if(data.success)
+            {
+                navigate('/login');
+                window.location.reload();
+            }
+            else
+            {
+                setMessage(data.message);
+                clearForm(null);
+            }
+            
         }, error => {
-            // TODO: Needs a Replacement for Connect-Flash Messaging
-            window.location.reload();
+            setMessage("Server Error!");
         });
     }
 
@@ -78,9 +117,9 @@ function Register()
                 <div className="login" id="contentArea">
                     <h1 className="display-4">Register</h1>
         
-                    {/* TODO: Need Message Area */}
+                    { handleMessage() }
         
-                    <form onSubmit = { handleRegister } id="registerForm" noValidate>
+                    <form onSubmit = { handleRegister } onReset = { handleReset } id="registerForm" noValidate>
                         <p className="hint-text">Create your own account. It's free and only takes a minute.</p>
         
                         <div className="form-group">

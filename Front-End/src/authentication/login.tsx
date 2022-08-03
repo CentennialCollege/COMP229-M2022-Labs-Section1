@@ -68,7 +68,6 @@ function Login()
             
         }, error =>{
             setMessage("Server Error!");
-            //window.location.reload();
         });
     }
 
